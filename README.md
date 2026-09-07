@@ -13,18 +13,43 @@ Routines to raytrace aspheric surfaces (intended to be used in your own project)
 ## Quick demonstration
 <details><summary>Compiling</summary>
   This project only requires the basic C/C++ libraries. The Graphical User Interface version requires SDL2. You can compile it on UNIX by typing
+  
   ```
   make
   ```
+
   or in a command line on most OS by typing
+  
   ```
   cmake .
   cmake --build .
   ```
+
   If you do not have SDL2, you can still use the version that makes a Bitmap image from a command line input.
 </details>
 
+If you run `Raytrace_GUI(.exe)` you will be able to select one of the following demonstration optics using the ordinary number keys:
+
+```
+0 = No optic
+1 = Glass sphere
+2 = Convex lens
+3 = Single aspheric surface
+4 = Aspheric lens
+5 = Compound aspheric lens consisting of multiple optics
+```
+You can then use the `A` and `D` keys to rotate the view angle left/right and the `W` and `S` keys to zoom in/out.
+
+If you run `Raytrace_BMP.(exe)` you must supply optional command-line arguments, in order, for the Optic Type (see above), View Angle (degrees), view size (smaller is more zoomed in). For example, on Linux the following would be optic type 3, 90 degree viewing angle, zoom size 6:
+
+```
+./Raytrace_BMP 3 90 6
+```
+
+
 ## Using this in your own project
+
+
 
 
 ## How it works
