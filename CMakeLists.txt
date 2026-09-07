@@ -17,10 +17,10 @@ target_link_libraries(raytracing aspherical)
 add_executable(Raytrace_GUI Raytrace_GUI.cpp)
 add_executable(Raytrace_BMP Raytrace_BMP.cpp)
 
+target_link_libraries(Raytrace_BMP aspherical raytracing)
 target_link_libraries(Raytrace_GUI
     aspherical
     raytracing
     SDL2main
     SDL2
 )
-target_link_libraries(Raytrace_BMP aspherical raytracing)
