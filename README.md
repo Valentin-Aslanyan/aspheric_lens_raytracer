@@ -49,7 +49,36 @@ If you run `Raytrace_BMP.(exe)` you must supply optional command-line arguments,
 
 ## Using this in your own project
 
+We assume a ray takes the form 
 
+$$\vec{r}=\vec{p}+t\vec{q}$$
 
+Any position along the ray can be parameterized via the distance $t$. When raytracing, a given ray must be tested against all primitives (such as an aspheric surface) in a scene to check for any intersections. If an intersection (hit) occurs, it is useful to have the position of the hit and the normal to the primitive $\vec{N}$ (for refraction calculations). The solutions to intersections with primitives are also parameterized via $t$. A straight ray may intersect multiple primitives and therefore have multiple solutions for $t$; only the one with the lowest (positive) $t$, namely $t_{min}$ is desired. A general function representing a primitive therefore has:
+
+**Inputs**
+
+  - `ray_orig` $\Leftrightarrow$ $\vec{p}$
+  
+  - `ray_dir` $\Leftrightarrow$ $\vec{q}$
+  
+  - `properties` $\Leftrightarrow$ $R,k,A_i$ (for aspheres; whatever the other primitive properties are for others)
+
+**Outputs**
+
+  - `bool` (function's return value) Has a hit occurred at all?
+  
+  - `t_hit` $\Leftrightarrow$ $t_{min}$
+  
+  - `hit_pos` $\Leftrightarrow$ $\vec{p}$ $+$ $t_{min}$ $\vec{q}$
+  
+  - `hit_normal` $\Leftrightarrow$ $\vec{N}$
+
+  - Note that if the function's first return value is `false`, the other returns are garbage.
+
+Take the function `rayintersect_axiasphere` and adapt it to your own project. The floating point numbers are `double`s for simplicity, but should be modified as necessary. 3-vectors are written as elementary pointers, but should be replaced with custom structs used in your own project.
+
+For the aspheric surface, after the remaining `properties` are set, the function `set_axiasphere_bounds` must be called on it.
+
+There are supplementary functions to help set up a scene and so on, see the rest of the project for examples of how to use them.
 
 ## How it works
